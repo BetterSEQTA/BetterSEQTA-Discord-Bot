@@ -10,7 +10,7 @@ export default {
 	    if (interaction.member.roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel.id === "1239895139959443486") {
 	    	const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
 	    	const attachment = interaction.options.getAttachment('file');
-	    	if (attachment.name.split('.').pop() === 'json') {
+	    	if (attachment.name.split('.').pop() === 'json' || 'theme') {
 			interaction.deferReply();
 			const jsonFile = await fetch(attachment.url).then(response => response.json());
 			const headName = `${interaction.user.id}-${crypto.randomBytes(10).toString('hex')}`;
