@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
+      "typeRoots": ["src/@types", "node_modules/@types"],
       "outDir": "./output",
-      "allowJs": true,
       "target": "ESNext",
-      "module": "NodeNext"
+      "module": "NodeNext",
     },
-    "include": ["./**/*.ts"]
-  }
+    "include": ["src"],
+    "exclude": ["node_modules"],
+    "extends": "@tsconfig/node23/tsconfig.json"
+}

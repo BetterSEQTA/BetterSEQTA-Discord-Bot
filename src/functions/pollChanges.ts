@@ -1,13 +1,14 @@
+import { Message } from "discord.js";
 import { client } from "../index.js";
 import { EmbedBuilder } from "@discordjs/builders";
 
-export async function pollChanges(message) {
+export async function pollChanges(message: Message) {
 
     const channel = client.channels.cache.get('1104256006139150407');
 	try {
-        if (message.embeds[0].title.toLowerCase().includes('[betterseqta/betterseqta-themes]') && message.embeds[0].title.toLowerCase().includes('pull request')) {
-            const index = message.embeds[0].title.toLowerCase().indexOf('user');
-            const strOut = message.embeds[0].title.toLowerCase().substr(index);
+        if (message.embeds[0].title!.toLowerCase().includes('[betterseqta/betterseqta-themes]') && message.embeds[0].title!.toLowerCase().includes('pull request')) {
+            const index = message.embeds[0].title!.toLowerCase().indexOf('user');
+            const strOut = message.embeds[0].title!.toLowerCase().substr(index);
 
             const username = strOut.substring(5);
             const guild = await client.guilds.fetch('1104025284979720212');

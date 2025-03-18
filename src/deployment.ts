@@ -1,14 +1,15 @@
-import { Routes } from 'discord-api-types/v10';
+import { RESTPutAPIApplicationCommandsJSONBody, Routes } from 'discord-api-types/v10';
 import { REST } from '@discordjs/rest';
 import 'dotenv/config';
 const { CLIENTID, DISCORD_TOKEN } = process.env;
 import fs from 'node:fs';
 import path from 'node:path';
 
+const isWin = process.platform === "win32";
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-const __dirname = fileURLToPath(dirname(import.meta.url));
+import * as url from 'url';
+
+const __dirname = (url.fileURLToPath(new URL('.', import.meta.url)));
 
 
 const commands = [];
@@ -25,7 +26,12 @@ for (const folder of commandFolders) {
 
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
-		const command = import(filePath);
+		let command: Promise<any>
+		if (isWin === true) {
+			command = import('file:///' + filePath);
+		} else {
+			command = import(filePath);
+		}
 		const commandresult = command.then((result) => {
 			if (result.default.data && result.default.execute) {
 
@@ -41,14 +47,14 @@ for (const folder of commandFolders) {
 		};
 };
 // Construct and prepare an instance of the REST module
-const rest = new REST().setToken(DISCORD_TOKEN);
+const rest: any = new REST().setToken(DISCORD_TOKEN as string);
 
 (async () => {
 	try {
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		const data = await rest.put(
-			Routes.applicationCommands(CLIENTID),
+			Routes.applicationCommands(CLIENTID as string),
 			{ body: commands },
 		);
 

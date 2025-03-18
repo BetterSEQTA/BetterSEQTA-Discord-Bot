@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { octokit } from '../../functions/createOctokit.js';
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, GuildMemberRoleManager } from 'discord.js';
 
 export default {
 	data: new SlashCommandBuilder()
@@ -8,8 +8,9 @@ export default {
 		.setDescription('Get all theme pull requests you have created'),
 	async execute(interaction: ChatInputCommandInteraction) {
 		interaction.deferReply();
-		if (interaction.member.roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel.id === "1239895139959443486") {
-			const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
+		let roles = (interaction.member!.roles) as GuildMemberRoleManager
+		if (roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel!.id === "1239895139959443486") {
+			const interactionUser = await interaction.guild!.members.fetch(interaction.user.id)
 			const pulls = await octokit.rest.search.issuesAndPullRequests({
 				q: `is:pr ${interactionUser.user.username} in:title repo:BetterSEQTA/BetterSEQTA-Themes`
 			})

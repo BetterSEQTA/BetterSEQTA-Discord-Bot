@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "run": "tsc && node ./output/deployment.js && node ./output/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "@octokit/auth-app": "^7.1.5",
     "@octokit/core": "^6.1.4",
     "@octokit/rest": "^20.1.2",
+    "@tsconfig/node23": "^23.0.0",
     "@types/node": "^20.17.24",
     "discord-api-types": "^0.37.119",
     "discord.js": "^14.18.0",

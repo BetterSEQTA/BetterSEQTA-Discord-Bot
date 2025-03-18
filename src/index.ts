@@ -24,7 +24,7 @@ for (const folder of commandFolders) {
 	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
-		let command = ''
+		let command: Promise<any>
 		if (isWin === true) {
 			command = import('file:///' + filePath);
 		} else {
@@ -50,7 +50,7 @@ const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'
 
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	let event = '';
+	let event: Promise<any>;
 	if (isWin === true) {
 		event = import('file:///' + filePath);
 	} else {

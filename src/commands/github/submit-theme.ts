@@ -1,18 +1,20 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { randomBytes } from 'node:crypto';
 import { octokit } from '../../functions/createOctokit.js';
+import { ChatInputCommandInteraction, GuildMemberRoleManager } from 'discord.js';
 export default {
     data: new SlashCommandBuilder()
         .setName('submit-theme')
         .setDescription('Submit a custom theme to GitHub.')
 	.addAttachmentOption(option => option.setName('file').setDescription('The theme file to submit (in the BetterSEQTA+ exported format).').setRequired(true)),
-    async execute(interaction) {
-	    if (interaction.member.roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel.id === "1239895139959443486") {
-	    	const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
+    async execute(interaction: ChatInputCommandInteraction) {
+		let roles = (interaction.member!.roles) as GuildMemberRoleManager
+	    if (roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel!.id === "1239895139959443486") {
+	    	const interactionUser = await interaction.guild!.members.fetch(interaction.user.id)
 	    	const attachment = interaction.options.getAttachment('file');
-	    	if (attachment.name.split('.').pop() === 'json' || 'theme') {
+	    	if (attachment!.name.split('.').pop() === 'json' || 'theme') {
 				interaction.deferReply();
-				const jsonFile = await fetch(attachment.url).then(response => response.json());
+				const jsonFile = await fetch(attachment!.url).then(response => response.json());
 				const headName = `${interaction.user.id}-${randomBytes(10).toString('hex')}`;
 				// Grab the branch reference of the main branch which we will use as the base for the new branch.
 				const mainRef = await octokit.rest.git.getRef({
