@@ -4,22 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/builders": "^1.9.0",
+    "@discordjs/builders": "^1.10.1",
     "@discordjs/collection": "^2.1.1",
-    "@discordjs/rest": "^2.4.0",
-    "@octokit/auth-app": "^7.1.1",
-    "@octokit/core": "^6.1.2",
-    "@octokit/rest": "^20.1.1",
-    "@types/node": "^20.16.5",
-    "discord-api-types": "^0.37.100",
-    "discord.js": "^14.16.2",
-    "dotenv": "^16.4.5"
+    "@discordjs/rest": "^2.4.3",
+    "@octokit/auth-app": "^7.1.5",
+    "@octokit/core": "^6.1.4",
+    "@octokit/rest": "^20.1.2",
+    "@types/node": "^20.17.24",
+    "discord-api-types": "^0.37.119",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "esbuild": "^0.25.1",
+    "typescript": "^5.8.2"
   },
   "type": "module"
 }

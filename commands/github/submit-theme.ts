@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import crypto from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import { octokit } from '../../functions/createOctokit.js';
 export default {
     data: new SlashCommandBuilder()
@@ -13,7 +13,7 @@ export default {
 	    	if (attachment.name.split('.').pop() === 'json' || 'theme') {
 				interaction.deferReply();
 				const jsonFile = await fetch(attachment.url).then(response => response.json());
-				const headName = `${interaction.user.id}-${crypto.randomBytes(10).toString('hex')}`;
+				const headName = `${interaction.user.id}-${randomBytes(10).toString('hex')}`;
 				// Grab the branch reference of the main branch which we will use as the base for the new branch.
 				const mainRef = await octokit.rest.git.getRef({
   					owner: 'BetterSEQTA',
@@ -34,7 +34,7 @@ export default {
 					base_tree: mainRef.data.object.sha,
 					tree: [
 						{
-							path: `store/themes/${interaction.user.id}-${crypto.randomBytes(10).toString('hex')}/theme.json`,
+							path: `store/themes/${interaction.user.id}-${randomBytes(10).toString('hex')}/theme.json`,
 							mode: '100644',
 							type: 'blob',
 							content: `${JSON.stringify(jsonFile, null, ' ')}`,

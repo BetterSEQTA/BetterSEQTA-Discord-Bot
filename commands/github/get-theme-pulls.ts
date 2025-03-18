@@ -1,11 +1,12 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { octokit } from '../../functions/createOctokit.js';
+import { ChatInputCommandInteraction } from 'discord.js';
 
 export default {
 	data: new SlashCommandBuilder()
 		.setName('get-theme-pulls')
 		.setDescription('Get all theme pull requests you have created'),
-	async execute(interaction) {
+	async execute(interaction: ChatInputCommandInteraction) {
 		interaction.deferReply();
 		if (interaction.member.roles.cache.some(role => role.name === 'Theme Submitter') && interaction.channel.id === "1239895139959443486") {
 			const interactionUser = await interaction.guild.members.fetch(interaction.user.id)

@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "outDir": "./output",
+      "allowJs": true,
+      "target": "ESNext",
+      "module": "NodeNext"
+    },
+    "include": ["./**/*.ts"]
+  }
