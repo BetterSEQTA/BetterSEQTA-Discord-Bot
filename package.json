@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run": "tsc && node ./output/deployment.js && node ./output/index.js",
+    "build": "tsc && node ./output/deployment.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
