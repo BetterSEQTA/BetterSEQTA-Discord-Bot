@@ -8,7 +8,8 @@ export default {
         if (message.webhookId) {
             pollChanges(message);
         } else if (message.mentions.has(message.client.user!)) {
-            const response = await talkToGemini(message.content);
+            const tenmessages = await message.channel.messages.fetch({ limit: 10})
+            const response = await talkToGemini(message.content, tenmessages);
             if (response) {
                 await message.reply(response);
             } else {
