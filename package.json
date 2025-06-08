@@ -11,19 +11,20 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/builders": "^1.10.1",
+    "@discordjs/builders": "^1.11.2",
     "@discordjs/collection": "^2.1.1",
-    "@discordjs/rest": "^2.4.3",
-    "@octokit/auth-app": "^7.1.5",
-    "@octokit/core": "^6.1.4",
+    "@discordjs/rest": "^2.5.0",
+    "@google/genai": "^1.4.0",
+    "@octokit/auth-app": "^7.2.1",
+    "@octokit/core": "^6.1.5",
     "@octokit/rest": "^20.1.2",
-    "@tsconfig/node23": "^23.0.0",
-    "@types/node": "^20.17.24",
-    "discord-api-types": "^0.37.119",
-    "discord.js": "^14.18.0",
-    "dotenv": "^16.4.7",
-    "esbuild": "^0.25.1",
-    "typescript": "^5.8.2"
+    "@tsconfig/node23": "^23.0.2",
+    "@types/node": "^20.19.0",
+    "discord-api-types": "^0.37.120",
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
   },
   "type": "module"
 }

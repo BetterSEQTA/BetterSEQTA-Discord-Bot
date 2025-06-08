@@ -1,4 +1,4 @@
-import { RESTPutAPIApplicationCommandsJSONBody, Routes } from 'discord-api-types/v10';
+import { Routes } from 'discord-api-types/v10';
 import { REST } from '@discordjs/rest';
 import 'dotenv/config';
 const { CLIENTID, DISCORD_TOKEN } = process.env;

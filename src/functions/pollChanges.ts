@@ -1,8 +1,8 @@
-import { Message } from "discord.js";
+import { Message, OmitPartialGroupDMChannel } from "discord.js";
 import { client } from "../index.js";
 import { EmbedBuilder } from "@discordjs/builders";
 
-export async function pollChanges(message: Message) {
+export async function pollChanges(message: OmitPartialGroupDMChannel<Message>) {
 
     const channel = client.channels.cache.get('1104256006139150407');
 	try {
