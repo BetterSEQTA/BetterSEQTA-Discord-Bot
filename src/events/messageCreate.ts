@@ -12,11 +12,11 @@ export default {
 
       if (message.author.id !== OFFENDER_ID) return;
 
-      const pingedRoleDirectly = message.mentions.roles?.has(PROTECTED_ROLE_ID);
-      const pingedMemberWithRole =
-        message.mentions.members?.some(m => m.roles.cache.has(PROTECTED_ROLE_ID)) ?? false;
+      const pingedProtectedMember = message.mentions.members?.some(member =>
+        member.roles.cache.has(PROTECTED_ROLE_ID)
+      );
 
-      if (pingedRoleDirectly || pingedMemberWithRole) {
+      if (pingedProtectedMember) {
         if (message.deletable) await message.delete().catch(() => {});
         if (message.member?.moderatable) {
           await message.member.timeout(10_000, 'Pinged protected-role members').catch(() => {});
